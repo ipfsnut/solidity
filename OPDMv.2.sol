@@ -22,17 +22,19 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     string diamondURI = "https://ipfs.nftbookbazaar.com/ipfs/QmaBSBGuMyPmjFcLtV528YWCJaSitLtZn9c6kSwduhZXaY#0";
     
     uint256 _price;
-    uint256 diamondPrice = 0.0025 * (10 ** 18);
+    uint256 diamondPrice = 2.5 * (10 ** 18);
     uint256 silverPrice = 0.0025 * (10 ** 18);
     uint256 public constant diamondMaxSupply = 13 * (10 ** 18);
     uint256 public constant silverMaxSupply = 10000 * (10 ** 18);
     uint256 public constant wippyMaxSupply = 384 * (10 ** 18);
 
 
-    constructor() ERC721("Official PageDAO Membership", "OPM") {
+    constructor(uint256 price) ERC721("Official PageDAO Membership", "OPM") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(PAUSER_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
+        price = _price;
+
     }
 
     function pause() public onlyRole(PAUSER_ROLE) {
@@ -63,6 +65,7 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     function MintDiamond() payable public whenNotPaused {
         require(totalSupply() < diamondMaxSupply);
         require(diamondPrice == msg.value, "Ether value sent is not correct");
+        _price = silverPrice;
         
         uint256 tokenID = totalSupply();
         _safeMint(_msgSender(), tokenID);
@@ -72,6 +75,7 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     function MintSilver() payable public whenNotPaused {
         require(totalSupply() < silverMaxSupply);
         require(silverPrice == msg.value, "Ether value sent is not correct");
+            _price = silverPrice;
         
         uint256 tokenID = totalSupply();
         _safeMint(_msgSender(), tokenID);
