@@ -24,9 +24,9 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     uint256 _price;
     uint256 diamondPrice = 2.5 * (10 ** 18);
     uint256 silverPrice = 0.0025 * (10 ** 18);
-    uint256 public constant diamondMaxSupply = 13 * (10 ** 18);
-    uint256 public constant silverMaxSupply = 10000 * (10 ** 18);
-    uint256 public constant wippyMaxSupply = 384 * (10 ** 18);
+    uint256 public constant diamondMaxSupply = 13;
+    uint256 public constant silverMaxSupply = 10000;
+    uint256 public constant wippyMaxSupply = 384;
 
 
     constructor(uint256 price) ERC721("Official PageDAO Membership", "OPM") {
@@ -55,7 +55,7 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
                 
     // This function makes the tokens airdroppable.
    
-    function airDropWippy(address[] memory toAddresses) public onlyRole(MINTER_ROLE) {
+    function airDropWippy(address[] calldata toAddresses) public onlyRole(MINTER_ROLE) {
         for(uint i = 0; i < toAddresses.length; i++) {
         safeMint(toAddresses[i], wippyURI);
         }
@@ -65,7 +65,6 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     function MintDiamond() payable public whenNotPaused {
         require(totalSupply() < diamondMaxSupply);
         require(diamondPrice == msg.value, "Ether value sent is not correct");
-        _price = silverPrice;
         
         uint256 tokenID = totalSupply();
         _safeMint(_msgSender(), tokenID);
@@ -75,7 +74,6 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     function MintSilver() payable public whenNotPaused {
         require(totalSupply() < silverMaxSupply);
         require(silverPrice == msg.value, "Ether value sent is not correct");
-            _price = silverPrice;
         
         uint256 tokenID = totalSupply();
         _safeMint(_msgSender(), tokenID);
