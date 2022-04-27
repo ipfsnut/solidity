@@ -22,9 +22,9 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     string diamondURI = "https://ipfs.nftbookbazaar.com/ipfs/QmaBSBGuMyPmjFcLtV528YWCJaSitLtZn9c6kSwduhZXaY#0";
     
     uint256 _price;
-    uint256 public constant diamondMaxSupply = 13;
-    uint256 public constant silverMaxSupply = 10000;
-    uint256 public constant wippyMaxSupply = 384;
+    uint256 public constant diamondMaxSupply = 13 * (10 ** 18);
+    uint256 public constant silverMaxSupply = 10000 * (10 ** 18);
+    uint256 public constant wippyMaxSupply = 384 * (10 ** 18);
     uint256 diamondPrice = 2.5 * (10 ** 18);
     uint256 silverPrice = 0.025 * (10 ** 18);
 
