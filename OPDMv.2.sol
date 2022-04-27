@@ -17,9 +17,9 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     Counters.Counter private _tokenIdCounter;
 
-    string silverURI = "https://ipfs.nftbookbazaar.com/ipfs/Qmbr4ynQH4XgFdSQXuKK2DywBC9SakqsZtzvcD4gQrynbe";
-    string wippyURI = "https://ipfs.nftbookbazaar.com/ipfs/Qmbr4ynQH4XgFdSQXuKK2DywBC9SakqsZtzvcD4gQrynbe";
-    string diamondURI = "https://ipfs.nftbookbazaar.com/ipfs/Qmbr4ynQH4XgFdSQXuKK2DywBC9SakqsZtzvcD4gQrynbe";
+    string silverURI = "https://ipfs.nftbookbazaar.com/ipfs/QmcBpuMDjuAvaz4TV5nt25Bv9ow3UTfDrQXcaXEnAESBoU#0";
+    string wippyURI = "https://ipfs.nftbookbazaar.com/ipfs/Qmbr4ynQH4XgFdSQXuKK2DywBC9SakqsZtzvcD4gQrynbe#0";
+    string diamondURI = "https://ipfs.nftbookbazaar.com/ipfs/QmaBSBGuMyPmjFcLtV528YWCJaSitLtZn9c6kSwduhZXaY#0";
     
     uint256 _price;
     uint256 public constant diamondMaxSupply = 13;
@@ -33,10 +33,6 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(PAUSER_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
-    }
-
-    function _baseURI() internal pure override returns (string memory) {
-        return "https://ipfs.nftbookbazaar.com/ipfs/Qmbr4ynQH4XgFdSQXuKK2DywBC9SakqsZtzvcD4gQrynbe#0";
     }
 
     function pause() public onlyRole(PAUSER_ROLE) {
@@ -79,7 +75,7 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
         
         uint256 tokenID = totalSupply();
         _safeMint(_msgSender(), tokenID);
-        _setTokenURI(tokenID, diamondURI);
+        _setTokenURI(tokenID, silverURI);
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
