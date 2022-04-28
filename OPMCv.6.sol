@@ -32,12 +32,10 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     uint256 public constant totalMaxSupply = 10397; 
 
 
-    constructor(uint256 price) ERC721("Official PageDAO Membership", "OPM") {
+    constructor() ERC721("Official PageDAO Membership", "OPM") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(PAUSER_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
-        price = _price;
-
     }
 
     function pause() public onlyRole(PAUSER_ROLE) {
