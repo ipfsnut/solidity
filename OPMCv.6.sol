@@ -22,6 +22,8 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     string diamondURI = "https://ipfs.nftbookbazaar.com/ipfs/QmaBSBGuMyPmjFcLtV528YWCJaSitLtZn9c6kSwduhZXaY#0";
     
     uint256 _price;
+
+    uint256 _wippySupply;
     
     uint256 _silverSupply;
     uint256 silverPrice = 0.025 * (10 ** 18);
@@ -106,6 +108,13 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
+
+    function getWippySupply() 
+        public  
+        returns(uint256)
+    {
+        return _wippySupply;
+    }   
 
     function tokenURI(uint256 tokenId)
         public
