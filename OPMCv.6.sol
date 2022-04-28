@@ -22,12 +22,15 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     string diamondURI = "https://ipfs.nftbookbazaar.com/ipfs/QmaBSBGuMyPmjFcLtV528YWCJaSitLtZn9c6kSwduhZXaY#0";
     
     uint256 _price;
-    uint256 diamondPrice = 2.5 * (10 ** 18);
-    uint256 silverPrice = 0.025 * (10 ** 18);
-    uint256 _diamondSupply;
+    
     uint256 _silverSupply;
-    uint256 public constant diamondMaxSupply = 13;
+    uint256 silverPrice = 0.025 * (10 ** 18);
     uint256 public constant silverMaxSupply = 10000;
+    
+    uint256 _diamondSupply;
+    uint256 diamondPrice = 2.5 * (10 ** 18);
+    uint256 public constant diamondMaxSupply = 13;
+    
     uint256 public constant wippyMaxSupply = 441;
     uint256 public constant totalMaxSupply = 10454; 
 
@@ -71,26 +74,21 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     // We want to increment *both* totalSupply and _diamondSupply/_silverSupply
 
     function MintDiamond() payable public whenNotPaused {
-        require(totalSupply() < totalMaxSupply);
         require(_diamondSupply < diamondMaxSupply);
         require(diamondPrice == msg.value, "Ether value sent is not correct");
         
         uint256 tokenID = totalSupply();
-        for(uint i = 0; i < diamondMaxSupply; i++) {
         _safeMint(_msgSender(), tokenID);
         _setTokenURI(tokenID, diamondURI);
-        }
     }
+
     function MintSilver() payable public whenNotPaused {
-        require(totalSupply() < totalMaxSupply);
         require(_silverSupply < silverMaxSupply);
         require(silverPrice == msg.value, "Ether value sent is not correct");
         
         uint256 tokenID = totalSupply();
-        for(uint i = 0; i < silverMaxSupply; i++) {
         _safeMint(_msgSender(), tokenID);
         _setTokenURI(tokenID, silverURI);
-        }
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
