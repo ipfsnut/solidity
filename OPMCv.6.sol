@@ -28,8 +28,8 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     uint256 _silverSupply;
     uint256 public constant diamondMaxSupply = 13;
     uint256 public constant silverMaxSupply = 10000;
-    uint256 public constant wippyMaxSupply = 384;
-    uint256 public constant totalMaxSupply = 10397; 
+    uint256 public constant wippyMaxSupply = 441;
+    uint256 public constant totalMaxSupply = 10454; 
 
 
     constructor() ERC721("Official PageDAO Membership", "OPM") {
