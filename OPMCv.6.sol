@@ -23,7 +23,7 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
     
     uint256 _price;
     uint256 diamondPrice = 2.5 * (10 ** 18);
-    uint256 silverPrice = 0.0025 * (10 ** 18);
+    uint256 silverPrice = 0.025 * (10 ** 18);
     uint256 _diamondSupply;
     uint256 _silverSupply;
     uint256 public constant diamondMaxSupply = 13;
@@ -68,9 +68,11 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
 
     }
 
+    // We want to increment *both* totalSupply and _diamondSupply/_silverSupply
+
     function MintDiamond() payable public whenNotPaused {
         require(totalSupply() < totalMaxSupply);
-        require(_diamondSupply < silverMaxSupply);
+        require(_diamondSupply < diamondMaxSupply);
         require(diamondPrice == msg.value, "Ether value sent is not correct");
         
         uint256 tokenID = totalSupply();
