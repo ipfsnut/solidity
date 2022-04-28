@@ -80,6 +80,7 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
         uint256 tokenID = totalSupply();
         _safeMint(_msgSender(), tokenID);
         _setTokenURI(tokenID, diamondURI);
+        _diamondSupply = _diamondSupply + 1;
     }
 
     function MintSilver() payable public whenNotPaused {
@@ -89,6 +90,7 @@ contract OfficialPageDAOMembership is ERC721, ERC721Enumerable, ERC721URIStorage
         uint256 tokenID = totalSupply();
         _safeMint(_msgSender(), tokenID);
         _setTokenURI(tokenID, silverURI);
+        _silverSupply = _silverSupply + 1;
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
