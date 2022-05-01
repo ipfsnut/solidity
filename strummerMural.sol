@@ -53,7 +53,7 @@ contract strummerMural is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, 
         return success;
     }
 
-    function MintSilver() payable public whenNotPaused {
+    function MintStrummer() payable public whenNotPaused {
         require(_strummerSupply < totalMaxSupply);
         require(strummerPrice == msg.value, "Ether value sent is not correct");
         
